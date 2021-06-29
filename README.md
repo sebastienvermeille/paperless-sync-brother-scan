@@ -46,3 +46,4 @@ Sebastien Vermeille <sebastien.vermeille@gmail.com> (Author)
 ## 
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sebastienvermeille_paperless-sync-brother-scan&metric=alert_status)](https://sonarcloud.io/dashboard?id=sebastienvermeille_paperless-sync-brother-scan)
+[![Build Status](https://travis-ci.com/sebastienvermeille/paperless-sync-brother-scan.svg?branch=main)](https://travis-ci.com/sebastienvermeille/paperless-sync-brother-scan)
