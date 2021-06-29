@@ -5,6 +5,7 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
 
+ARG PAPERLESS_SYNC_SCAN_VERSION=1.0.0
 ENV SCANNER_URL='http://192.168.1.16'
 ENV SCANNER_USERNAME='admin'
 ENV SCANNER_PASSWORD='1234'
