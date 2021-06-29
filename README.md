@@ -39,6 +39,10 @@ Alternatively you can run it via `python3 syncScanner.py`.
 Feel free to contribute to this project PR are always welcome.
 It works with Python >=3
 
-# Credits
+## Credits
 
 Sebastien Vermeille <sebastien.vermeille@gmail.com> (Author)
+
+## 
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sebastienvermeille_paperless-sync-brother-scan&metric=alert_status)](https://sonarcloud.io/dashboard?id=sebastienvermeille_paperless-sync-brother-scan)
