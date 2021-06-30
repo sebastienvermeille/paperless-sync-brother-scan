@@ -127,7 +127,7 @@ def upload_downloaded_documents(client):
                 "X-CSRFToken": client.cookies['csrftoken']
             }
 
-            r = client.post(paperless_url + '/api/documents/post_document/', files=multipart_form_data, headers=header_token)
+            client.post(paperless_url + '/api/documents/post_document/', files=multipart_form_data, headers=header_token)
             print("done")
         else:
             continue
