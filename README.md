@@ -21,13 +21,15 @@ To have it working you have ton configure your scanner in **Infrastructure Mode*
 
 ### 1) Docker - easiest way
 ```bash
-docker run sbeex/brothersyncscan:latest \
--e SCANNER_URL=<url of your brother scanner web ui> \
--e SCANNER_USERNAME=<username of your scanner web ui> \
--e SCANNER_PASSWORD=<password of your scanner web ui> \
--e PAPERLESS_URL=<url of paperless (incl port) ie: http://192.168.1.12:8000> \
--e PAPERLESS_USERNAME=<username of your paperless user> \
--e PAPERLESS_PASSWORD=<password of your paperless user account> 
+docker run -d \
+ --name syncscan \
+ -e SCANNER_URL=<url of your brother scanner web ui> \
+ -e SCANNER_USERNAME=<username of your scanner web ui> \
+ -e SCANNER_PASSWORD=<password of your scanner web ui> \
+ -e PAPERLESS_URL=<url of paperless (incl port) ie: http://192.168.1.12:8000> \
+ -e PAPERLESS_USERNAME=<username of your paperless user> \
+ -e PAPERLESS_PASSWORD=<password of your paperless user account> \
+ sbeex/paperless-sync-brother-scan:main
 ```
 
 ### 2) Run python script
@@ -46,3 +48,4 @@ Sebastien Vermeille <sebastien.vermeille@gmail.com> (Author)
 ## 
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sebastienvermeille_paperless-sync-brother-scan&metric=alert_status)](https://sonarcloud.io/dashboard?id=sebastienvermeille_paperless-sync-brother-scan)
+[![Docker Image CI](https://github.com/sebastienvermeille/paperless-sync-brother-scan/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/sebastienvermeille/paperless-sync-brother-scan/actions/workflows/build.yml)

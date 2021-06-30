@@ -3,6 +3,7 @@ MAINTAINER Sebastien Vermeille <sebastien.vermeille@gmail.com>
 WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
+RUN mkdir -p /app/temp
 COPY . .
 
 ARG PAPERLESS_SYNC_SCAN_VERSION=1.0.0
