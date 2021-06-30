@@ -35,11 +35,11 @@ def is_scanner_available():
             return True
         else:
             return False
-    except requests.exceptions.HTTPError as err:
+    except requests.exceptions.HTTPError:
         return False
-    except requests.exceptions.ConnectTimeout as err:
+    except requests.exceptions.ConnectTimeout:
         return False
-    except requests.exceptions.ConnectionRefusedError as err:
+    except requests.exceptions.ConnectionRefusedError:
         return False
 
 
@@ -72,7 +72,7 @@ def download_available_pdfs():
                 download_pdf_file(scanner_url + dl)
         else:
             print("Nothing new to sync", flush=True)
-    except ElementTree.ParseError as err:
+    except ElementTree.ParseError:
         print("Invalid content received from API ignoring it for now", flush=True)
 
 
@@ -108,7 +108,7 @@ def upload_downloaded_documents(client):
                 'document': open(full_filename, 'rb')
             }
 
-            headersPaperless = {
+            headers_paperless = {
                 "X-CSRFToken": client.cookies['csrftoken']
             }
 
@@ -117,19 +117,18 @@ def upload_downloaded_documents(client):
                 "password": paperless_password
             }
 
-            r = client.post(paperless_url + '/api/token/', headers=headersPaperless, data=auth_paperless)
+            r = client.post(paperless_url + '/api/token/', headers=headers_paperless, data=auth_paperless)
 
             body = json.loads(r.text)
-            apiToken = body['token']
+            api_token = body['token']
 
-            headerToken = {
-                'Authorization': f"Token {apiToken}",
+            header_token = {
+                'Authorization': f"Token {api_token}",
                 "X-CSRFToken": client.cookies['csrftoken']
             }
 
-            r = client.post(paperless_url + '/api/documents/post_document/', files=multipart_form_data, headers=headerToken)
+            r = client.post(paperless_url + '/api/documents/post_document/', files=multipart_form_data, headers=header_token)
             print("done")
-            continue
         else:
             continue
 
@@ -143,7 +142,7 @@ def delete_downloaded_documents():
 def authenticate_paperless():
     client = requests.session()
     # # Retrieve the CSRF token first
-    r = client.get(paperless_url)  # sets cookie
+    client.get(paperless_url)  # sets cookie
     if 'csrftoken' in client.cookies:
         # Django 1.6 and up
         csrftoken = client.cookies['csrftoken']
@@ -159,13 +158,13 @@ while True:
     if is_scanner_available():
         print("Scanner is available", flush=True)
         download_available_pdfs()
-        client = authenticate_paperless()
-        upload_downloaded_documents(client)
+        created_client = authenticate_paperless()
+        upload_downloaded_documents(created_client)
         delete_downloaded_documents()
         delete_all_pdfs()
         pdfsToDownload = []
         time.sleep(30)
     else:
         print(
-            f"Scanner not available (nor connected to WIFI). Will check again automatically in {checkScannerInterval} seconds.\n", flush=True)
+            f"Scanner not available at {scanner_url}. Will check again automatically in {checkScannerInterval} seconds.\n", flush=True)
         time.sleep(checkScannerInterval)
