@@ -110,7 +110,7 @@ def delete_file(document_name, type):
     if type == 'PDF':
         urlSuffix = '/.xmlpdf.page_index=1.chipsipcmd'
     else:
-        urlSuffix = '/.xmljpg.page_index=1.chipsipcmd'
+        urlSuffix = '/.xmlalbum.page_index=1.chipsipcmd'
 
     r = requests.post(settings.scanner_url + urlSuffix, files=multipart_form_data, auth=auth)
     if r.status_code == 200:
