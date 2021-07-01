@@ -9,6 +9,7 @@ from requests.auth import HTTPBasicAuth
 import requests
 import uuid as uuid
 import settings
+import logger
 
 log = logging.getLogger('syncScanLogger')
 
@@ -210,6 +211,7 @@ def sync_jpgs():
 
 
 try:
+    log.info("Starting sync brother scan")
     while True:
         if is_scanner_available():
             log.info("Scanner is available")

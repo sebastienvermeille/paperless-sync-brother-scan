@@ -1,11 +1,12 @@
 version: "3.9"
 services:
   scansync:
-    build: .
+    container_name: scansync
+    image: sbeex/paperless-sync-brother-scan:main
     environment:
       SCANNER_URL: ${SCANNER_URL}
       SCANNER_USERNAME: ${SCANNER_USERNAME}
       SCANNER_PASSWORD:  ${SCANNER_PASSWORD}
       PAPERLESS_URL:  ${PAPERLESS_URL}
-      PAPERLESS_LOGIN:  ${PAPERLESS_LOGIN}
+      PAPERLESS_USERNAME:  ${PAPERLESS_USERNAME}
       PAPERLESS_PASSWORD:  ${PAPERLESS_PASSWORD}
